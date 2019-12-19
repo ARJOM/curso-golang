@@ -9,9 +9,13 @@ func main() {
 		fmt.Printf("%d) %d\n", i, numero)
 	}
 
+	fmt.Println("")
+
 	for i := range numeros { // pegando apenas o indice
 		fmt.Println(i)
 	}
+
+	fmt.Println("")
 
 	for _, num := range numeros { // ignorando o indice
 		fmt.Println(num)
