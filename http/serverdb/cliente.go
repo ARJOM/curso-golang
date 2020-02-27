@@ -44,10 +44,14 @@ func usuarioPorID(w http.ResponseWriter, r *http.Request, id int) {
 	var u Usuario
 	db.QueryRow("select id, nome from usuarios where id = ?", id).Scan(&u.ID, &u.Nome)
 
-	json, _ := json.Marshal(u)
+	if u.ID != 0 {
+		json, _ := json.Marshal(u)
 
-	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, string(json))
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintf(w, string(json))
+	} else {
+		fmt.Fprintf(w, "Nenhum usuário com esse id")
+	}
 }
 
 func usuarioTodos(w http.ResponseWriter, r *http.Request) {
